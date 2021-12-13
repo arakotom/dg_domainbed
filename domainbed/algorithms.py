@@ -1046,7 +1046,7 @@ class AbstractClassMMD(ERM):
             for j in range(i + 1, nmb):
                 for k in range(self.num_classes):
                     ind_i=torch.where(targets[i]==k)[0]
-                    ind_j=torch.where(targets[i]==k)[0]
+                    ind_j=torch.where(targets[j]==k)[0]
                     penalty += self.mmd(features[i][ind_i], features[j][ind_j])
 
         objective /= nmb
