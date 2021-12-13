@@ -89,7 +89,7 @@ if __name__ == "__main__":
         hparams['delta'] = args.train_delta
         hparams['lr_d'] = args.lr_d
     elif args.algorithm == 'ClassCORAL':
-        hparams['mmd_gamma'] = 0.1
+        hparams['mmd_gamma'] = 1
 
 
     if args.dataset == 'RotatedMNIST' and args.algorithm == 'Transfer':
@@ -185,11 +185,13 @@ if __name__ == "__main__":
     print('check path: ', check_path)
 
     if os.path.exists(check_path):
-        checkpoint_dict = torch.load(check_path)
-        start_step = checkpoint_dict['step']
-        print(f"loading from checkpoint,  start_step: {start_step}")
-        algorithm_dict = checkpoint_dict['model_dict']
-        algorithm.load_state_dict(algorithm_dict)
+        print("Skipping Checkpoint loading")
+
+        # checkpoint_dict = torch.load(check_path)
+        # start_step = checkpoint_dict['step']
+        # print(f"loading from checkpoint,  start_step: {start_step}")
+        # algorithm_dict = checkpoint_dict['model_dict']
+        # algorithm.load_state_dict(algorithm_dict)
     else:
         start_step = 0
         
