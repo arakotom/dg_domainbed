@@ -130,7 +130,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description="Evaluate Transferability")
     parser.add_argument('--data_dir', type=str, default='domainbed/datasets/')
-    parser.add_argument('--algorithm', type=str, default='ERM')
+    parser.add_argument('--algorithm', type=str, default='Transfer')
     parser.add_argument('--test_envs', type=int, nargs='+', default=[0])
     parser.add_argument('--dataset', type=str, default="RotatedMNIST")
     parser.add_argument('--output_dir', type=str, default="results_transfer")

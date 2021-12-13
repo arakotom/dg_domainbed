@@ -25,7 +25,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Domain generalization')
     parser.add_argument('--data_dir', type=str, default='domainbed/datasets/')
     parser.add_argument('--dataset', type=str, default="RotatedMNIST")
-    parser.add_argument('--algorithm', type=str, default="ERM")
+    parser.add_argument('--algorithm', type=str, default="ClassCORAL")
     parser.add_argument('--task', type=str, default="domain_generalization",
         help='domain_generalization | domain_adaptation')
     parser.add_argument('--hparams', type=str,
