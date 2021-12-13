@@ -11,7 +11,7 @@ import uuid
 import json
 import os
 
-from wilds.datasets.camelyon17_dataset import Camelyon17Dataset
+#from wilds.datasets.camelyon17_dataset import Camelyon17Dataset
 from wilds.datasets.fmow_dataset import FMoWDataset 
 
 
