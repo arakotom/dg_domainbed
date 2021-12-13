@@ -990,6 +990,7 @@ class AbstractClassMMD(ERM):
             self.kernel_type = "gaussian"
         else:
             self.kernel_type = "mean_cov"
+        self.num_classes = num_classes
 
     def my_cdist(self, x1, x2):
         x1_norm = x1.pow(2).sum(dim=-1, keepdim=True)
@@ -1043,11 +1044,14 @@ class AbstractClassMMD(ERM):
 
             
             for j in range(i + 1, nmb):
-                penalty += self.mmd(features[i], features[j])
+                for k in range(self.num_classes):
+                    ind_i=torch.where(targets[i]==k)[0]
+                    ind_j=torch.where(targets[i]==k)[0]
+                    penalty += self.mmd(features[i][ind_i], features[j][ind_j])
 
         objective /= nmb
         if nmb > 1:
-            penalty /= (nmb * (nmb - 1) / 2)
+            penalty /= (self.num_classes*nmb * (nmb - 1) / 2)
 
         self.optimizer.zero_grad()
         (objective + (self.hparams['mmd_gamma']*penalty)).backward()
