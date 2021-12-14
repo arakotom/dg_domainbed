@@ -231,7 +231,7 @@ if __name__ == "__main__":
 
     last_results_keys = None
     filejason = f"results-{args.test_envs}"
-    epochs_path = os.path.join(output_dir, 'results.jsonl')
+    epochs_path = os.path.join(output_dir, filejason)
     if os.path.exists(epochs_path):
         os.remove(epochs_path)
 
