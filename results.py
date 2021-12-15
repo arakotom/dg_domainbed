@@ -18,7 +18,7 @@ env_list = [0,1,2,3]
 data = 'PACS'
 output_dir = './results/'
 score = ['']*len(env_list)
-score_mat = np.zeros(len(algo_list),len(env_list))
+score_mat = np.zeros((len(algo_list),len(env_list)))
 for i_envs in env_list:
     for k, algo in enumerate(algo_list):
         score[i_envs].append(algo)
