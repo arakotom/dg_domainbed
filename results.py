@@ -21,7 +21,7 @@ score = ['']*len(env_list)
 score_mat = np.zeros((len(algo_list),len(env_list)))
 for i_envs in env_list:
     for k, algo in enumerate(algo_list):
-        score[i_envs].append(algo)
+        #score[i_envs].append(algo)
 
         with open(os.path.join(output_dir,data, algo,f'results-[{i_envs:}]'), 'r') as myfile:
             lines=myfile.readlines()
