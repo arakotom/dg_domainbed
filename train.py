@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
 
     if args.dataset in ['PACS', 'OfficeHome']:
-        hparams['batch_size'] = 64
+        hparams['batch_size'] = 32
     elif args.dataset == 'WILDSFMoW':
         hparams['batch_size'] = 16
     if args.algorithm == 'Transfer': 
