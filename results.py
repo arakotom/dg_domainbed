@@ -50,7 +50,7 @@ print(score_mat_traindomain)
 
 for k, algo in enumerate((algo_list)):
     text=f"{algo:15}"
-    for j in range(len(env_list)-1):
+    for j in range(len(env_list)):
      text = text +  f" & {score_mat_traindomain[k,j]:2.3f} "
     text += f" | {score_mat_traindomain[k,:].mean():2.3f} "
     print(text)
