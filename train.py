@@ -92,8 +92,8 @@ if __name__ == "__main__":
         hparams['d_steps_per_g'] = args.d_steps_per_g
         hparams['delta'] = args.train_delta
         hparams['lr_d'] = args.lr_d
-    elif args.algorithm == 'ClassCORAL':
-        hparams['mmd_gamma'] = 1
+    elif args.algorithm == 'ClassCORAL' or args.algorithm == 'CORAL':
+        hparams['mmd_gamma'] = 0.1
 
 
     if args.dataset == 'RotatedMNIST' and args.algorithm == 'Transfer':
