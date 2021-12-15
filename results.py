@@ -14,7 +14,7 @@ import os
 
 
 algo_list = ['ERM', 'CORAL','ClassCORAL']
-data = 'RotatedMNIST'
+data = 'PACS'
 if data == 'RotatedMNIST':
     env_list = [0,1,2,3,4]
 elif data == 'PACS':
