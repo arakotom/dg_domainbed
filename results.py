@@ -14,8 +14,8 @@ import os
 
 
 algo_list = ['ERM', 'CORAL','ClassCORAL']
-env_list = [0,1,2,3,4]
-data = 'RotatedMNIST'
+env_list = [0,1,2,3]
+data = 'PACS'
 output_dir = './results/'
 for algo in algo_list:
     for i_envs in env_list:
