@@ -14,7 +14,7 @@ import os
 
 
 algo_list = ['ERM', 'CORAL','ClassCORAL']
-env_list = [0,1,2,3]
+env_list = [0,1,2,3,4]
 data = 'RotatedMNIST'
 output_dir = './results/'
 score = ['']*len(env_list)
