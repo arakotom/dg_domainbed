@@ -17,7 +17,7 @@ algo_list = ['ERM', 'CORAL','ClassCORAL']
 data = 'RotatedMNIST'
 output_dir = './results/'
 for algo in algo_list:
-    with open(os.path.join(output_dir,data, algo,'results-[1].txt'), 'r') as myfile:
+    with open(os.path.join(output_dir,data, algo,'results-[1]'), 'r') as myfile:
         data=myfile.readlines()
 
 
