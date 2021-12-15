@@ -63,7 +63,7 @@ if __name__ == "__main__":
     # every once in a while, and then load them from disk here.
     start_step = 0
     algorithm_dict = None
-
+    torch.cuda.empty_cache() 
 
     print("Environment:")
     print("\tPython: {}".format(sys.version.split(" ")[0]))
