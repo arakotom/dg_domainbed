@@ -47,5 +47,10 @@ for i_envs in env_list:
 print(score_mat_test)
 print(score_mat_traindomain)
 #print(f'{algo} \t\t\t {perf_in:2.3f} \t {perf_out}')
-            
+
+for k, algo in enumerate((algo_list)):
+    text=f"{algo:10}"
+    for j in range(len(env_list)-1):
+     text +=+ f"& {score_mat_traindomain[j]:2.3f}"
+    print(text)
 
