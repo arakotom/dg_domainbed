@@ -19,7 +19,7 @@ data = 'RotatedMNIST'
 output_dir = './results/'
 for algo in algo_list:
     for i_envs in env_list:
-        with open(os.path.join(output_dir,data, algo,'results-[i_envs]'), 'r') as myfile:
+        with open(os.path.join(output_dir,data, algo,'results-[{i_envs}]'), 'r') as myfile:
             lines=myfile.readlines()
     
     
