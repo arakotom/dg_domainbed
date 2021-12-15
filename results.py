@@ -15,7 +15,7 @@ import os
 
 algo_list = ['ERM', 'CORAL','ClassCORAL']
 env_list = [0,1,2,3]
-data = 'PACS'
+data = 'RotatedMNIST'
 output_dir = './results/'
 score = ['']*len(env_list)
 score_mat_test = np.zeros((len(algo_list),len(env_list)))
