@@ -56,6 +56,7 @@ if __name__ == "__main__":
     parser.add_argument('--train_delta', type=float, default=0.5)
     parser.add_argument('--lr_d', type=float, default=1e-3, help='step size for the maximization optimizer')
     parser.add_argument('--lr', type=float, default=5e-5, help='step size for the minimization optimizer')
+    parser.add_argument('--mmd_gamma', type=float, default=1., help='regularizer for MMD')
     args = parser.parse_args()
 
 
@@ -93,7 +94,8 @@ if __name__ == "__main__":
         hparams['delta'] = args.train_delta
         hparams['lr_d'] = args.lr_d
     elif args.algorithm == 'ClassCORAL' or args.algorithm == 'CORAL':
-        hparams['mmd_gamma'] = 0.1 # penalty 
+        hparams['mmd_gamma'] = args.mmd_gamma # penalty 
+        hparams['batch_size'] = 64
 
 
     if args.dataset == 'RotatedMNIST' and args.algorithm == 'Transfer':
@@ -102,7 +104,11 @@ if __name__ == "__main__":
     if args.algorithm == 'Transfer':
         output_dir = os.path.join(args.output_dir, args.dataset, args.algorithm + '_' + str(args.d_steps_per_g) + '_' + str(args.train_delta))
     else:
-        output_dir = os.path.join(args.output_dir, args.dataset, args.algorithm)
+        output_dir = os.path.join(args.output_dir, args.dataset, args.algorithm 
+                                  + '_mmd' + str(hparams['mmd_gamma'])
+                                  + 'batch' + str(hparams['batch_size'])
+                                  +  'resnet' + str(hparams['resnet18'])
+                                  )
 
 
     os.makedirs(output_dir, exist_ok=True)
