@@ -1032,27 +1032,40 @@ class AbstractClassMMD(ERM):
     def update(self, minibatches, unlabeled=None):
         objective = 0
         penalty = 0
+        penalty_diff = 0
+        nb_diff = 0
+        nb_in = 0
         nmb = len(minibatches)
 
         features = [self.featurizer(xi) for xi, _ in minibatches]
         classifs = [self.classifier(fi) for fi in features]
         targets = [yi for _, yi in minibatches]
 
-        for i in range(nmb):
+        for i in range(nmb):   # domain
             #objective += F.cross_entropy(classifs[i], targets[i])
             objective += F.multi_margin_loss(classifs[i], targets[i])
 
-            
+            # minimize similary of class-conditional
             for j in range(i + 1, nmb):
                 for k in range(self.num_classes):
                     ind_i=torch.where(targets[i]==k)[0]
                     ind_j=torch.where(targets[j]==k)[0]
                     if len(ind_i)>1 and len(ind_j) > 1:
                         penalty += self.mmd(features[i][ind_i], features[j][ind_j])
-
+                        nb_in +=1
+            # maximise distance of class cond for same domain
+            for k in range(self.num_classes):
+                for kp in range(self.num_classes):
+                    if k != kp:
+                        ind_i=torch.where(targets[i]==k)[0]
+                        ind_j=torch.where(targets[i]==kp)[0]
+                        if len(ind_i)>1 and len(ind_j) > 1:
+                            penalty_diff += self.mmd(features[i][ind_i], features[i][ind_j])
+                            nb_diff +=1
         objective /= nmb
         if nmb > 1:
-            penalty /= (self.num_classes*nmb * (nmb - 1) / 2)
+            penalty /= nb_in
+            penalty_diff /= nb_diff
 
         self.optimizer.zero_grad()
         (objective + (self.hparams['mmd_gamma']*penalty)).backward()
