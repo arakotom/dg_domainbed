@@ -13,7 +13,6 @@ import numpy as np
 import os
 
 
-algo_list = ['ERM', 'CORAL','ClassCORAL']
 data = 'PACS'
 if data == 'RotatedMNIST':
     env_list = [0,1,2,3,4]
@@ -21,6 +20,8 @@ elif data == 'PACS':
     env_list = [0,1,2,3]
 
 output_dir = './results/'
+algo_list = os.listdir(os.path.join(output_dir,data))
+
 score = ['']*len(env_list)
 score_mat_test = np.zeros((len(algo_list),len(env_list)))
 score_mat_traindomain = np.zeros((len(algo_list),len(env_list)))
@@ -29,6 +30,7 @@ score_mat_traindomain = np.zeros((len(algo_list),len(env_list)))
 for i_envs in env_list:
     for k, algo in enumerate(algo_list):
         #score[i_envs].append(algo)
+
 
         with open(os.path.join(output_dir,data, algo,f'results-[{i_envs:}]'), 'r') as myfile:
             lines=myfile.readlines()
