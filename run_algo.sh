@@ -20,6 +20,9 @@ for a in ClassCORAL #CORAL ERM
 do
 for t in 0 1 2  3    # a stands for the algorithm
 do
-	python train.py --dataset PACS --test_envs $t --algorithm $a
+	python train.py --dataset PACS --test_envs $t --algorithm $a --mmd_gamma 1
+	python train.py --dataset PACS --test_envs $t --algorithm $a --mmd_gamma 0.5
+	python train.py --dataset PACS --test_envs $t --algorithm $a --mmd_gamma 2
+
 done
 done
