@@ -16,7 +16,7 @@
 #done
 
 
-for a in ClassCORAL CORAL ERM
+for a in ClassCORAL #CORAL ERM
 do
 for t in 0 1 2  3    # a stands for the algorithm
 do
