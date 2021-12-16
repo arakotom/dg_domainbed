@@ -95,7 +95,7 @@ if __name__ == "__main__":
         hparams['lr_d'] = args.lr_d
     elif args.algorithm == 'ClassCORAL' or args.algorithm == 'CORAL':
         hparams['mmd_gamma'] = args.mmd_gamma # penalty 
-        hparams['batch_size'] = 64
+        hparams['batch_size'] = 32
 
 
     if args.dataset == 'RotatedMNIST' and args.algorithm == 'Transfer':
