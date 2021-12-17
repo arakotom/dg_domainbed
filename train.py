@@ -101,6 +101,9 @@ if __name__ == "__main__":
     if args.dataset == 'RotatedMNIST' and args.algorithm == 'Transfer':
         hparams['lr'] = 0.01
 
+    #-------------------------------------------------------------------------
+    #                   OUTPUT DIR
+    #-------------------------------------------------------------------------
     if args.algorithm == 'Transfer':
         output_dir = os.path.join(args.output_dir, args.dataset, args.algorithm + '_' + str(args.d_steps_per_g) + '_' + str(args.train_delta))
     else:
@@ -108,6 +111,7 @@ if __name__ == "__main__":
                                   + '_mmd' + str(hparams['mmd_gamma'])
                                   + 'batch' + str(hparams['batch_size'])
                                   +  'resnet' + str(hparams['resnet18'])
+                                  +  'step '+ str(args.steps)
                                   )
 
 
