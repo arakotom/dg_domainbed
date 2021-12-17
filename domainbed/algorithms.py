@@ -1000,8 +1000,8 @@ class AbstractClassMMD(ERM):
                           x2.transpose(-2, -1), alpha=-2).add_(x1_norm)
         return res.clamp_min_(1e-30)
 
-    def gaussian_kernel(self, x, y, gamma=[0.001, 0.01, 0.1, 1, 10, 100,
-                                           1000]):
+    def gaussian_kernel(self, x, y, gamma=[0.0001,0.001, 0.01, 0.1, 1, 10
+                                           ]):
         D = self.my_cdist(x, y)
         K = torch.zeros_like(D)
         for g in gamma:
@@ -1079,7 +1079,7 @@ class AbstractClassMMD(ERM):
                     ind_i=torch.where(targets[i]==k)[0]
                     ind_j=torch.where(targets[j]==k)[0]
                     if len(ind_i)>1 and len(ind_j) > 1:
-                        penalty += self.emd(features[i][ind_i], features[j][ind_j])
+                        penalty += self.mmd(features[i][ind_i], features[j][ind_j])
                         nb_in +=1
             # maximise distance of class cond for same domain
             for k in range(self.num_classes):
@@ -1088,7 +1088,7 @@ class AbstractClassMMD(ERM):
                         ind_i=torch.where(targets[i]==k)[0]
                         ind_j=torch.where(targets[i]==kp)[0]
                         if len(ind_i)>1 and len(ind_j) > 1:
-                            penalty_diff += self.emd(features[i][ind_i], features[i][ind_j])
+                            penalty_diff += self.mmd(features[i][ind_i], features[i][ind_j])
                             nb_diff +=1
         objective /= nmb
         if nmb > 1:
