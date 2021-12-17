@@ -1079,7 +1079,7 @@ class AbstractClassMMD(ERM):
                     ind_i=torch.where(targets[i]==k)[0]
                     ind_j=torch.where(targets[j]==k)[0]
                     if len(ind_i)>1 and len(ind_j) > 1:
-                        penalty += self.mmd(features[i][ind_i], features[j][ind_j])
+                        penalty += self.emd(features[i][ind_i], features[j][ind_j])
                         nb_in +=1
             # maximise distance of class cond for same domain
             for k in range(self.num_classes):
@@ -1088,7 +1088,7 @@ class AbstractClassMMD(ERM):
                         ind_i=torch.where(targets[i]==k)[0]
                         ind_j=torch.where(targets[i]==kp)[0]
                         if len(ind_i)>1 and len(ind_j) > 1:
-                            penalty_diff += self.mmd(features[i][ind_i], features[i][ind_j])
+                            penalty_diff += self.emd(features[i][ind_i], features[i][ind_j])
                             nb_diff +=1
         objective /= nmb
         if nmb > 1:
