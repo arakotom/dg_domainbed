@@ -1004,7 +1004,7 @@ class AbstractClassMMD(ERM):
                                            1000]):
         D = self.my_cdist(x, y)
         K = torch.zeros_like(D)
-
+        gamma = 1/D.mean()
         for g in gamma:
             K.add_(torch.exp(D.mul(-g)))
 
