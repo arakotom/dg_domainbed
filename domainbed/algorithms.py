@@ -1026,8 +1026,8 @@ class AbstractClassMMD(ERM):
         return K
 
     def emd(self,x,y):
-        a = ot.unif(x.shape[0])
-        b = ot.unif(y.shape[0])
+        a = torch.ones(x.shape[0])/x.shape[0]
+        b = torch.ones(y.shape[0])/y.shape[0]
         M = ot.dist(x,y)
         with torch.no_grad():
             maxi = torch.max(M)
