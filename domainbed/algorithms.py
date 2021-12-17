@@ -1000,7 +1000,7 @@ class AbstractClassMMD(ERM):
                           x2.transpose(-2, -1), alpha=-2).add_(x1_norm)
         return res.clamp_min_(1e-30)
 
-    def gaussian_kernel(self, x, y, gamma=[0.0001,0.001, 0.01, 0.1, 1, 10
+    def gaussian_kernel(self, x, y, gamma=[0.0001,0.001, 0.01, 0.1, 1, 10,100,1000
                                            ]):
         D = self.my_cdist(x, y)
         K = torch.zeros_like(D)
@@ -1032,7 +1032,7 @@ class AbstractClassMMD(ERM):
         with torch.no_grad():
             maxi = torch.max(M)
             Mp = torch.div(M,maxi)
-            G = ot.emd(a,b,Mp)[0]
+            G, _  = ot.emd(a,b,Mp)
         #G = G.to(device)
         #print(M)
         #print(G)
