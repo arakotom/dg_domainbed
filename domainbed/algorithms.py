@@ -5,7 +5,7 @@ import torch.autograd as autograd
 
 import copy
 import numpy as np
-
+import ot
 from domainbed import networks
 from domainbed.lib.misc import random_pairs_of_minibatches
 from domainbed.misc_t import proj, distance
@@ -1004,11 +1004,39 @@ class AbstractClassMMD(ERM):
                                            1000]):
         D = self.my_cdist(x, y)
         K = torch.zeros_like(D)
-        gamma = 1/D.mean()
         for g in gamma:
             K.add_(torch.exp(D.mul(-g)))
 
+        # D = self.my_cdist(x, y)
+        # K = torch.zeros_like(D)
+                
+        # kernel_mul = 2
+        # kernel_num = 5                    
+        
+        # bandwidth = torch.sum(D) / (n_samples**2-n_samples)
+        # #print('fix:',bandwidth)
+        # bandwidth /= kernel_mul ** (kernel_num // 2)
+        # bandwidth_list = [bandwidth * (kernel_mul**i) for i in range(kernel_num)]
+                
+        
+        # for g in gamma:
+        #     K.add_(torch.exp(D.mul(-g)))
+
+
         return K
+
+    def emd(self,x,y):
+        a = ot.unif(x.shape[0])
+        b = ot.unif(y.shape[0])
+        M = ot.dist(x,y)
+        with torch.no_grad():
+            maxi = torch.max(M)
+            Mp = torch.div(M,maxi)
+            G = ot.emd(a,b,Mp)[0]
+        #G = G.to(device)
+        #print(M)
+        #print(G)
+        return torch.sum(G*M)
 
     def mmd(self, x, y):
         if self.kernel_type == "gaussian":
