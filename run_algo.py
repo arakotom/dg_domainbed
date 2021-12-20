@@ -8,6 +8,7 @@
 
 
 import os
+
 data = 'PACS'
 env_list = [0,1,2,3]
 algo_list = ['ERM'] #['CORAL','ClassCORAL','ClassMMD']
@@ -20,7 +21,7 @@ for step in step_list:
             for envs in env_list:
                 for mmd_gamma in mmd_gamma_list:
                     command = f"python train.py --algorithm {algo} --dataset {data:}"
-                    command += f" --test_envs{envs:d} --mmd_gamma  {mmd_gamma:2.1f} --step {step:d}"
+                    command += f" --test_envs {envs:d} --mmd_gamma  {mmd_gamma:2.1f} --step {step:d}"
                     command += f" --seed {seed:d}"
                     print(command)
                     os.system(command)
