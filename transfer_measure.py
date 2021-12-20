@@ -155,6 +155,10 @@ if __name__ == '__main__':
         #print('data_dir_pure: ', data_dir_pure)
     else:
         data_dir_pure = os.path.join(args.dataset, args.algorithm)
+        ###
+        ###  INSERER ICI LES CHEMINS
+
+
 
     data_dir_saved = os.path.join('results', data_dir_pure)
     data_dir_to_save = os.path.join('results_transfer', data_dir_pure)

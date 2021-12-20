@@ -27,6 +27,8 @@ ALGORITHMS = [
     'RSC',
     'SD',
     'Transfer', 
+    'ClassCORAL',
+
 ]
 
 def get_algorithm_class(algorithm_name):
@@ -983,14 +985,14 @@ class AbstractClassMMD(ERM):
     Perform ERM while matching the pair-wise domain feature distributions
     using MMD (abstract class)
     """
-    def __init__(self, input_shape, num_classes, num_domains, hparams, gaussian):
+    def __init__(self, input_shape, num_classes, num_domains, hparams, kernel_type,
+                 loss_type):
         super(AbstractClassMMD, self).__init__(input_shape, num_classes, num_domains,
                                   hparams)
-        if gaussian:
-            self.kernel_type = "gaussian"
-        else:
-            self.kernel_type = "mean_cov"
+  
+        self.kernel_type = kernel_type
         self.num_classes = num_classes
+        self.loss_type = loss_type
 
     def my_cdist(self, x1, x2):
         x1_norm = x1.pow(2).sum(dim=-1, keepdim=True)
@@ -1025,26 +1027,13 @@ class AbstractClassMMD(ERM):
 
         return K
 
-    def emd(self,x,y):
-        a = torch.ones(x.shape[0])/x.shape[0]
-        b = torch.ones(y.shape[0])/y.shape[0]
-        M = ot.dist(x,y)
-        with torch.no_grad():
-            maxi = torch.max(M)
-            Mp = torch.div(M,maxi)
-            G, _  = ot.emd(a,b,Mp)
-        #G = G.to(device)
-        #print(M)
-        #print(G)
-        return torch.sum(G*M)
-
     def mmd(self, x, y):
         if self.kernel_type == "gaussian":
             Kxx = self.gaussian_kernel(x, x).mean()
             Kyy = self.gaussian_kernel(y, y).mean()
             Kxy = self.gaussian_kernel(x, y).mean()
             return Kxx + Kyy - 2 * Kxy
-        else:
+        elif self.kernel_type == 'mean_cov':
             mean_x = x.mean(0, keepdim=True)
             mean_y = y.mean(0, keepdim=True)
             cent_x = x - mean_x
@@ -1056,6 +1045,16 @@ class AbstractClassMMD(ERM):
             cova_diff = (cova_x - cova_y).pow(2).mean()
 
             return mean_diff + cova_diff
+        elif self.kernel_type == 'wd':
+            a = torch.ones(x.shape[0])/x.shape[0]
+            b = torch.ones(y.shape[0])/y.shape[0]
+            M = ot.dist(x,y)
+            with torch.no_grad():
+                maxi = torch.max(M)
+                Mp = torch.div(M,maxi)
+                G, _  = ot.emd(a,b,Mp)
+
+            return torch.sum(G*M)
 
     def update(self, minibatches, unlabeled=None):
         objective = 0
@@ -1070,8 +1069,10 @@ class AbstractClassMMD(ERM):
         targets = [yi for _, yi in minibatches]
 
         for i in range(nmb):   # domain
-            #objective += F.cross_entropy(classifs[i], targets[i])
-            objective += F.multi_margin_loss(classifs[i], targets[i])
+            if self.loss_type == 'CE':
+                objective += F.cross_entropy(classifs[i], targets[i])
+            else:
+                objective += F.multi_margin_loss(classifs[i], targets[i])
 
             # minimize similary of class-conditional
             for j in range(i + 1, nmb):
@@ -1112,7 +1113,7 @@ class ClassMMD(AbstractClassMMD):
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
         super(ClassMMD, self).__init__(input_shape, num_classes,
-                                          num_domains, hparams, gaussian=True)
+                                          num_domains, hparams, gaussian='gaussian',loss_type='large')
 
 
 class ClassCORAL(AbstractClassMMD):
@@ -1122,5 +1123,46 @@ class ClassCORAL(AbstractClassMMD):
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
         super(ClassCORAL, self).__init__(input_shape, num_classes,
-                                         num_domains, hparams, gaussian=False)
+                                         num_domains, hparams, gaussian='mean_cov',loss_type='large')
+        
+class ClassWD(AbstractClassMMD):
+    """
+    MMD using Gaussian kernel
+    """
+
+    def __init__(self, input_shape, num_classes, num_domains, hparams):
+        super(ClassWD, self).__init__(input_shape, num_classes,
+                                          num_domains, hparams, gaussian='wd',loss_type='large')
+
+        
+
+class ClassMMDCE(AbstractClassMMD):
+    """
+    MMD using Gaussian kernel
+    """
+
+    def __init__(self, input_shape, num_classes, num_domains, hparams):
+        super(ClassMMDCE, self).__init__(input_shape, num_classes,
+                                          num_domains, hparams, gaussian='gaussian',loss_type='CE')
+
+
+class ClassCORALCE(AbstractClassMMD):
+    """
+    MMD using mean and covariance difference
+    """
+
+    def __init__(self, input_shape, num_classes, num_domains, hparams):
+        super(ClassCORALLargeMargin, self).__init__(input_shape, num_classes,
+                                         num_domains, hparams, gaussian='mean_cov',loss_type='CE')
+
+
+
+class ClassWDCE(AbstractClassMMD):
+    """
+    MMD using mean and covariance difference
+    """
+
+    def __init__(self, input_shape, num_classes, num_domains, hparams):
+        super(ClassCORALLargeMargin, self).__init__(input_shape, num_classes,
+                                         num_domains, hparams, gaussian='wd',loss_type='CE')
 
