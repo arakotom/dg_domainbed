@@ -13,13 +13,16 @@ env_list = [0,1,2,3]
 algo_list = ['CORAL','ClassCORAL','ClassMMD']
 mmd_gamma_list = [0.1, 0.5,1,2]
 step_list = [1000,2000]
+seed_list = [0,1,2]
 for step in step_list:
-    for algo in algo_list:
-        for envs in env_list:
-            for mmd_gamma in mmd_gamma_list:
-                command = f"python train.py --algorithm {algo} --dataset {data:}"
-                command += f" --test_envs{envs:d} --mmd_gamma  {mmd_gamma:2.1f} --step {step:d}"
-                print(command)
+    for seed in seed_list:
+        for algo in algo_list:
+            for envs in env_list:
+                for mmd_gamma in mmd_gamma_list:
+                    command = f"python train.py --algorithm {algo} --dataset {data:}"
+                    command += f" --test_envs{envs:d} --mmd_gamma  {mmd_gamma:2.1f} --step {step:d}"
+                    command += f" --seed{seed:d}"
+                    print(command)
         #os.system(command)
 
 #for a in ClassCORAL CORAL ERM

@@ -111,14 +111,14 @@ if __name__ == "__main__":
                                   + '_mmd' + str(hparams['mmd_gamma'])
                                   + 'batch' + str(hparams['batch_size'])
                                   +  'resnet' + str(hparams['resnet18'])
-                                  +  'step ' + str(args.steps)
+                                  +  'step' + str(args.steps)
                                   +  'seed' + str(args.seed)
                                   )
     else:
         output_dir = os.path.join(args.output_dir, args.dataset, args.algorithm 
                           + 'batch' + str(hparams['batch_size'])
                           +  'resnet' + str(hparams['resnet18'])
-                          +  'step ' + str(args.steps)
+                          +  'step' + str(args.steps)
                           +  'seed' + str(args.seed)
                           )
 
