@@ -8,48 +8,56 @@
 
 
 import os
+import getopt,sys
+
+setting = 2
+
+opts, args = getopt.getopt(sys.argv[1:], "s:")
+for opt, arg in opts:
+    if opt == '-s':
+        setting = int(arg)
+
+if setting == 1:
+    algo_list = ['CORAL','ClassCORAL','ClassMMD']
+elif setting == 2:
+    algo_list = ['Transfer']
+
 
 data = 'PACS'
 if data == 'PACS':
     env_list = [0,1,2,3]
-algo_list = ['CORAL','ClassCORAL','ClassMMD']
+    lr = 5e-5
+    train_delta = 0.3
+    lr_d = 0.001
+    d_steps = 30
+    
 step_list = [1000]
 seed_list = [0]
+
 for step in step_list:
     for seed in seed_list:
         for algo in algo_list:
-            if algo == 'ERM':
+            if algo in ['ERM', 'Transfer'] :
                 mmd_gamma_list = [0]
             else:
                 mmd_gamma_list = [0.1, 0.5,1,2]
-
             for envs in env_list:
-                for mmd_gamma in mmd_gamma_list:
-                    command = f"python train.py --algorithm {algo} --dataset {data:}"
-                    command += f" --test_envs {envs:d} --mmd_gamma  {mmd_gamma:2.1f} --step {step:d}"
-                    command += f" --seed {seed:d}"
+                if setting == 1:
+
+                    for mmd_gamma in mmd_gamma_list:
+                        command = f"python train.py --algorithm {algo} --dataset {data:} --lr {lr:2.5f}"
+                        command += f" --test_envs {envs:d} --mmd_gamma  {mmd_gamma:2.1f} --step {step:d}"
+                        command += f" --seed {seed:d}"
+                        print(command)
+                        os.system(command)
+                elif setting ==2 : ###
+                    ###  Transfer algorithm setiing
+                    
+                    command = f"python train.py --algorithm {algo} --dataset {data:} --lr {lr:2.5f}"
+                    command += f" --test_envs {envs:d}" 
+                    command += f"--train_delta {train_delta:2.2f} --d_steps_per_g {d_steps:d} --lr_d {lr_d:2.3f}"
                     print(command)
-                    os.system(command)
 
-#for a in ClassCORAL CORAL ERM
-#do
-#for t in 0 1 2  3 4    # a stands for the algorithm
-#do
-#	python train.py --dataset RotatedMNIST --test_envs $t --algorithm $a
-#done
-#done
 
-# for s in 1000 2000
-# do
-# for a in ClassCORAL CORAL ERM # a stands for the algorithm
-# do
-# for t in 0 1 2  3     # a stands for the algorithm
-# do
 
-# 	python train.py --dataset PACS --test_envs $t --algorithm $a --mmd_gamma 1 --steps $s
-# 	python train.py --dataset PACS --test_envs $t --algorithm $a --mmd_gamma 0.5 --steps $s
-# 	python train.py --dataset PACS --test_envs $t --algorithm $a --mmd_gamma 2 --steps $s
-    
-# done
-# done
-# done
+
