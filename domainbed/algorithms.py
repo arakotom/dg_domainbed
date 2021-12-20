@@ -1152,7 +1152,7 @@ class ClassCORALCE(AbstractClassMMD):
     """
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
-        super(ClassCORALLargeMargin, self).__init__(input_shape, num_classes,
+        super(ClassCORALCE, self).__init__(input_shape, num_classes,
                                          num_domains, hparams, kernel_type='mean_cov',loss_type='CE')
 
 
@@ -1163,6 +1163,6 @@ class ClassWDCE(AbstractClassMMD):
     """
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
-        super(ClassCORALLargeMargin, self).__init__(input_shape, num_classes,
+        super(ClassWDCE, self).__init__(input_shape, num_classes,
                                          num_domains, hparams, kernel_type='wd',loss_type='CE')
 
