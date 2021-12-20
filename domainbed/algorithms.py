@@ -1113,7 +1113,7 @@ class ClassMMD(AbstractClassMMD):
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
         super(ClassMMD, self).__init__(input_shape, num_classes,
-                                          num_domains, hparams, gaussian='gaussian',loss_type='large')
+                                          num_domains, hparams, kernel_type='gaussian',loss_type='large')
 
 
 class ClassCORAL(AbstractClassMMD):
@@ -1123,7 +1123,7 @@ class ClassCORAL(AbstractClassMMD):
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
         super(ClassCORAL, self).__init__(input_shape, num_classes,
-                                         num_domains, hparams, gaussian='mean_cov',loss_type='large')
+                                         num_domains, hparams, kernel_type='mean_cov',loss_type='large')
         
 class ClassWD(AbstractClassMMD):
     """
@@ -1132,7 +1132,7 @@ class ClassWD(AbstractClassMMD):
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
         super(ClassWD, self).__init__(input_shape, num_classes,
-                                          num_domains, hparams, gaussian='wd',loss_type='large')
+                                          num_domains, hparams, kernel_type='wd',loss_type='large')
 
         
 
@@ -1143,7 +1143,7 @@ class ClassMMDCE(AbstractClassMMD):
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
         super(ClassMMDCE, self).__init__(input_shape, num_classes,
-                                          num_domains, hparams, gaussian='gaussian',loss_type='CE')
+                                          num_domains, hparams, kernel_type='gaussian',loss_type='CE')
 
 
 class ClassCORALCE(AbstractClassMMD):
@@ -1153,7 +1153,7 @@ class ClassCORALCE(AbstractClassMMD):
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
         super(ClassCORALLargeMargin, self).__init__(input_shape, num_classes,
-                                         num_domains, hparams, gaussian='mean_cov',loss_type='CE')
+                                         num_domains, hparams, kernel_type='mean_cov',loss_type='CE')
 
 
 
@@ -1164,5 +1164,5 @@ class ClassWDCE(AbstractClassMMD):
 
     def __init__(self, input_shape, num_classes, num_domains, hparams):
         super(ClassCORALLargeMargin, self).__init__(input_shape, num_classes,
-                                         num_domains, hparams, gaussian='wd',loss_type='CE')
+                                         num_domains, hparams, kernel_type='wd',loss_type='CE')
 
