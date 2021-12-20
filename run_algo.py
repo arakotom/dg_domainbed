@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # Clear the DISPLAY.
 # unsetenv DISPLAY
 # Call MATLAB with the appropriate input and output,
