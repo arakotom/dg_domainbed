@@ -57,6 +57,8 @@ for step in step_list:
                     command = f"python train.py --algorithm {algo} --dataset {data:} --lr {lr:2.5f}"
                     command += f" --test_envs {envs:d} --step {steps_tran:d} " 
                     command += f"--train_delta {train_delta:2.2f} --d_steps_per_g {d_steps:d} --lr_d {lr_d:2.3f}"
+                    command += f" --seed {seed:d}"
+
                     print(command)
                     os.system(command)
 
