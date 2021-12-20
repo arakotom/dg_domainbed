@@ -12,7 +12,7 @@ import os
 data = 'PACS'
 if data == 'PACS':
     env_list = [0,1,2,3]
-algo_list = ['ERM'] #['CORAL','ClassCORAL','ClassMMD']
+algo_list = ['CORAL','ClassCORAL','ClassMMD']
 step_list = [1000]
 seed_list = [0]
 for step in step_list:
