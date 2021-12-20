@@ -18,7 +18,7 @@ for opt, arg in opts:
         setting = int(arg)
 
 if setting == 1:
-    algo_list = ['CORAL','ClassCORAL','ClassMMD']
+    algo_list = ['ClassCORAL','ClassMMD']
 elif setting == 2:
     algo_list = ['Transfer']
 
