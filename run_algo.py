@@ -10,7 +10,6 @@
 import os
 import getopt,sys
 
-setting = 2
 
 opts, args = getopt.getopt(sys.argv[1:], "s:")
 for opt, arg in opts:
