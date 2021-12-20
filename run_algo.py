@@ -10,14 +10,19 @@
 import os
 
 data = 'PACS'
-env_list = [0,1,2,3]
+if data == 'PACS':
+    env_list = [0,1,2,3]
 algo_list = ['ERM'] #['CORAL','ClassCORAL','ClassMMD']
-mmd_gamma_list = [0.1, 0.5,1,2]
 step_list = [1000]
 seed_list = [0]
 for step in step_list:
     for seed in seed_list:
         for algo in algo_list:
+            if algo == 'ERM':
+                mmd_gamma_list = [0]
+            else:
+                mmd_gamma_list = [0.1, 0.5,1,2]
+
             for envs in env_list:
                 for mmd_gamma in mmd_gamma_list:
                     command = f"python train.py --algorithm {algo} --dataset {data:}"
