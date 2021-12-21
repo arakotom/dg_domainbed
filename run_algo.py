@@ -17,7 +17,7 @@ for opt, arg in opts:
         setting = int(arg)
 
 if setting == 1:
-    algo_list = ['ClassCORAL','ClassMMD','CORAL']
+    algo_list = ['ClassMMD'] #['ClassCORAL','ClassMMD','CORAL']
 elif setting == 2:
     algo_list = ['Transfer']
 
@@ -31,7 +31,7 @@ if data == 'PACS':
     d_steps = 30
     steps_tran = 8000
     
-step_list = [8000]
+step_list = [1000]
 seed_list = [0,1,2]
 
 for step in step_list:
