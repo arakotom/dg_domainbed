@@ -28,6 +28,8 @@ ALGORITHMS = [
     'SD',
     'Transfer', 
     'ClassCORAL',
+    'ClassMMD',
+    'ClassWD'
 
 ]
 
@@ -1101,7 +1103,7 @@ class AbstractClassMMD(ERM):
         self.optimizer.step()
 
         if torch.is_tensor(penalty):
-            penalty = penalty.item()
+            penalty = (penalty+penalty_diff).item()
 
         return {'loss': objective.item(), 'penalty': penalty}
 
