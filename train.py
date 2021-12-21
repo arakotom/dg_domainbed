@@ -29,7 +29,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Domain generalization')
     parser.add_argument('--data_dir', type=str, default='./domainbed/datasets/')
     parser.add_argument('--dataset', type=str, default="RotatedMNIST")
-    parser.add_argument('--algorithm', type=str, default="ClassCORAL")
+    parser.add_argument('--algorithm', type=str, default="ClassMMD")
     parser.add_argument('--task', type=str, default="domain_generalization",
         help='domain_generalization | domain_adaptation')
     parser.add_argument('--hparams', type=str,
@@ -93,7 +93,7 @@ if __name__ == "__main__":
         hparams['d_steps_per_g'] = args.d_steps_per_g
         hparams['delta'] = args.train_delta
         hparams['lr_d'] = args.lr_d
-    elif args.algorithm == 'ClassCORAL' or args.algorithm == 'CORAL':
+    elif args.algorithm in ['ClassCORAL','CORAL','ClassMMD','ClassWD']:
         hparams['mmd_gamma'] = args.mmd_gamma # penalty 
         hparams['batch_size'] = 32
 
