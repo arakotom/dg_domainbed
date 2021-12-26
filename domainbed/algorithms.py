@@ -1099,7 +1099,7 @@ class AbstractClassMMD(ERM):
             penalty_diff /= nb_diff
 
         self.optimizer.zero_grad()
-        (objective + (self.hparams['mmd_gamma']*(penalty+5*penalty_diff))).backward()
+        (objective + (self.hparams['mmd_gamma']*(penalty+2*penalty_diff))).backward()
         self.optimizer.step()
 
         if torch.is_tensor(penalty):
