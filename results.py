@@ -58,9 +58,9 @@ for i_envs in env_list:
             name_algo.append(0)
             seed.append(0)
     
-print(score_mat_test)
-print('\n')
-print(score_mat_traindomain)
+#print(score_mat_test)
+#print('\n')
+#print(score_mat_traindomain)
 #print(f'{algo} \t\t\t {perf_in:2.3f} \t {perf_out}')
 
 # print(data)
