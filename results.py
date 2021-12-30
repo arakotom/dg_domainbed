@@ -25,12 +25,15 @@ algo_list = os.listdir(os.path.join(output_dir,data))
 score = ['']*len(env_list)
 score_mat_test = np.zeros((len(algo_list),len(env_list)))
 score_mat_traindomain = np.zeros((len(algo_list),len(env_list)))
-
+name_algo = []
+seed = []
 
 for i_envs in env_list:
     for k, algo in enumerate(algo_list):
         #score[i_envs].append(algo)
-
+        # 
+        name_algo.append(algo.split('_')[0])
+        seed.append(algo.split('seed')[1])
         try:
             with open(os.path.join(output_dir,data, algo,f'results-[{i_envs:}]'), 'r') as myfile:
                 lines=myfile.readlines()
@@ -62,6 +65,8 @@ for k, algo in enumerate((algo_list)):
         text = text +  f" & {score_mat_traindomain[k,j]:2.3f} "
     text += f" || {score_mat_traindomain[k,:].mean():2.3f} "
     print(text)
+    
+
 for k, algo in enumerate((algo_list)):
     text=f"{algo:15}"
 
@@ -69,3 +74,15 @@ for k, algo in enumerate((algo_list)):
         text = text +  f" | {score_mat_test[k,j]:2.3f} "
     text += f" || {score_mat_test[k,:].mean():2.3f} "
     print(text)
+
+algo_to_showlist = ['CORAL','ClassCORAL']
+for algo_to_show in algo_to_showlist:
+    for i_seed in range(3):
+        for k, algo in enumerate((algo_list)):
+            if name_algo == algo and seed[k]==i_seed:
+                    text=f"{algo:15}"
+                    for j in range(len(env_list)):
+                        text = text +  f" | {score_mat_test[k,j]:2.3f} "
+                    text += f" || {score_mat_test[k,:].mean():2.3f} "
+                    print(text)
+                    
