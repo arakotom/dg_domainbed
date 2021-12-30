@@ -33,7 +33,7 @@ for i_envs in env_list:
         #score[i_envs].append(algo)
         # 
         
-        print(algo!)
+        print(algo)
         name_algo.append(algo.split('_')[0])
         seed.append(algo.split('seed')[1])
         try:
