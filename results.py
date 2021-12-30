@@ -25,8 +25,8 @@ algo_list = os.listdir(os.path.join(output_dir,data))
 score = ['']*len(env_list)
 score_mat_test = np.zeros((len(algo_list),len(env_list)))
 score_mat_traindomain = np.zeros((len(algo_list),len(env_list)))
-name_algo = np.chararray(len(algo_list))
-nb_seed = np.array(len(algo_list))
+name_algo = np.array(len(algo_list), dtype='object')
+nb_seed = np.zeros(len(algo_list))
 
 for i_envs in env_list:
     for k, algo in enumerate(algo_list):
