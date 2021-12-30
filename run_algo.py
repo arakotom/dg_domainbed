@@ -17,7 +17,7 @@ for opt, arg in opts:
         setting = int(arg)
 
 if setting == 1:
-    algo_list = ['ClassCORAL','ClassMMD']
+    algo_list = ['ClassCORAL','ClassMMD','CORAL']
 elif setting == 2:
     algo_list = ['Transfer']
 
@@ -48,7 +48,7 @@ for step in step_list:
                 for mmd_gamma in mmd_gamma_list:
                     for envs in env_list:
                         command = f"python train.py --algorithm {algo} --dataset {data:} --lr {lr:2.5f}"
-                        command += f" --test_envs {envs:d} --mmd_gamma  {mmd_gamma:2.1f} --step {step:d}"
+                        command += f" --test_envs {envs:d} --mmd_gamma  {mmd_gamma:2.2f} --step {step:d}"
                         command += f" --seed {seed:d}"
                         print(command)
                         os.system(command)

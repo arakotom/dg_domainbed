@@ -108,18 +108,18 @@ if __name__ == "__main__":
         output_dir = os.path.join(args.output_dir, args.dataset, args.algorithm + '_' + str(args.d_steps_per_g) + '_' + str(args.train_delta))
     elif args.algorithm in ['CORAL','ClassCORAL','ClassMMD','ClassWD','ClassCORALCE','ClassMMDCE','ClassWDCE']:
         output_dir = os.path.join(args.output_dir, args.dataset, args.algorithm 
-                                  + '_mmd' + str(hparams['mmd_gamma'])
-                                  + 'batch' + str(hparams['batch_size'])
-                                  +  'resnet' + str(hparams['resnet18'])
-                                  +  'step' + str(args.steps)
-                                  +  'seed' + str(args.seed)
+                                  + '_reg' + str(hparams['mmd_gamma'])
+                                  + '_batch' + str(hparams['batch_size'])
+                                  +  '_resnet' + str(hparams['resnet18'])
+                                  +  '_step' + str(args.steps)
+                                  +  '_seed' + str(args.seed)
                                   )
     else:
         output_dir = os.path.join(args.output_dir, args.dataset, args.algorithm 
-                          + 'batch' + str(hparams['batch_size'])
-                          +  'resnet' + str(hparams['resnet18'])
-                          +  'step' + str(args.steps)
-                          +  'seed' + str(args.seed)
+                          + '_batch' + str(hparams['batch_size'])
+                          +  '_resnet' + str(hparams['resnet18'])
+                          +  '_step' + str(args.steps)
+                          +  '_seed' + str(args.seed)
                           )
 
 
