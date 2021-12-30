@@ -84,7 +84,7 @@ for i_envs in env_list:
 
 algo_to_showlist = ['CORAL','ClassCORAL']
 for algo_to_show in algo_to_showlist:
-    for i_seed in range(3):
+    for i_seed in range(4):
         for k, algo in enumerate((algo_list)):
             #try:  
             if name_algo[k] == algo_to_show and nb_seed[k]==i_seed:
