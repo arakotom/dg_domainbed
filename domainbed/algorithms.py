@@ -1091,7 +1091,7 @@ class AbstractClassMMD(ERM):
                         ind_i=torch.where(targets[i]==k)[0]
                         ind_j=torch.where(targets[i]==kp)[0]
                         if len(ind_i)>1 and len(ind_j) > 1:
-                            penalty_diff += self.mmd(features[i][ind_i], features[i][ind_j])
+                            penalty_diff -= self.mmd(features[i][ind_i], features[i][ind_j])
                             nb_diff +=1
         objective /= nmb
         if nmb > 1:
