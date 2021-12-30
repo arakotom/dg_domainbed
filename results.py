@@ -25,8 +25,7 @@ algo_list = os.listdir(os.path.join(output_dir,data))
 score = ['']*len(env_list)
 score_mat_test = np.zeros((len(algo_list),len(env_list)))
 score_mat_traindomain = np.zeros((len(algo_list),len(env_list)))
-#name_algo = np.array((len(algo_list),), dtype='object')
-name_algo = []
+name_algo = np.array(['']*len(algo_list), dtype='object')
 nb_seed = np.ones(len(algo_list))*-1
 
 for i_envs in env_list:
@@ -37,7 +36,7 @@ for i_envs in env_list:
 
         try:
             #print(algo)
-            name_algo.append(algo.split('_')[0])
+            name_algo[k] = (algo.split('_')[0])
             print(len(name_algo))
             nb_seed[k] = int((algo.split('seed')[1]))
             with open(os.path.join(output_dir,data, algo,f'results-[{i_envs:}]'), 'r') as myfile:
