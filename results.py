@@ -35,7 +35,7 @@ for i_envs in env_list:
         
 
         try:
-            print(algo)
+            #print(algo)
             name_algo.append(algo.split('_')[0])
             seed.append(algo.split('seed')[1])
             with open(os.path.join(output_dir,data, algo,f'results-[{i_envs:}]'), 'r') as myfile:
@@ -86,7 +86,7 @@ for algo_to_show in algo_to_showlist:
         for k, algo in enumerate((algo_list)):
             try:  
                 seed.append(algo.split('seed')[1])
-                if name_algo[k] ==  name_algo.append(algo.split('_')[0]) and seed[k]==i_seed:
+                if name_algo[k] == algo.split('_')[0] and seed[k]==i_seed:
                     text=f"{algo:15}"
                     for j in range(len(env_list)):
                         text = text +  f" | {score_mat_test[k,j]:2.3f} "
