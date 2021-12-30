@@ -25,8 +25,8 @@ algo_list = os.listdir(os.path.join(output_dir,data))
 score = ['']*len(env_list)
 score_mat_test = np.zeros((len(algo_list),len(env_list)))
 score_mat_traindomain = np.zeros((len(algo_list),len(env_list)))
-name_algo = []
-seed = []
+name_algo = np.zeros(len(algo_list))
+nb_seed = np.zeros(len(algo_list))
 
 for i_envs in env_list:
     for k, algo in enumerate(algo_list):
@@ -36,8 +36,8 @@ for i_envs in env_list:
 
         try:
             #print(algo)
-            name_algo.append(algo.split('_')[0])
-            seed.append(algo.split('seed')[1])
+            name_algo[k] = (algo.split('_')[0])
+            nb_seed[k] = (algo.split('seed')[1])
             with open(os.path.join(output_dir,data, algo,f'results-[{i_envs:}]'), 'r') as myfile:
                 lines=myfile.readlines()
         
@@ -55,8 +55,9 @@ for i_envs in env_list:
             score_mat_test[k,i_envs] = perf_target_out
             score_mat_traindomain[k,i_envs] = perf_source_out
         except:
-            name_algo.append(0)
-            seed.append(0)
+            pass
+            #name_algo.append(0)
+            #seed.append(0)
     
 #print(score_mat_test)
 #print('\n')
