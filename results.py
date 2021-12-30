@@ -33,10 +33,11 @@ for i_envs in env_list:
         #score[i_envs].append(algo)
         # 
         
-        print(algo)
-        name_algo.append(algo.split('_')[0])
-        seed.append(algo.split('seed')[1])
+
         try:
+            print(algo)
+            name_algo.append(algo.split('_')[0])
+            seed.append(algo.split('seed')[1])
             with open(os.path.join(output_dir,data, algo,f'results-[{i_envs:}]'), 'r') as myfile:
                 lines=myfile.readlines()
         
@@ -54,7 +55,8 @@ for i_envs in env_list:
             score_mat_test[k,i_envs] = perf_target_out
             score_mat_traindomain[k,i_envs] = perf_source_out
         except:
-            pass
+            name_algo.append(0)
+            seed.append(0)
     
 print(score_mat_test)
 print('\n')
