@@ -26,7 +26,7 @@ score = ['']*len(env_list)
 score_mat_test = np.zeros((len(algo_list),len(env_list)))
 score_mat_traindomain = np.zeros((len(algo_list),len(env_list)))
 name_algo = np.chararray(len(algo_list))
-nb_seed = np.chararray(len(algo_list))
+nb_seed = np.array(len(algo_list))
 
 for i_envs in env_list:
     for k, algo in enumerate(algo_list):
@@ -37,7 +37,7 @@ for i_envs in env_list:
         try:
             #print(algo)
             name_algo[k] = (algo.split('_')[0])
-            nb_seed[k] = (algo.split('seed')[1])
+            nb_seed[k] = int((algo.split('seed')[1]))
             with open(os.path.join(output_dir,data, algo,f'results-[{i_envs:}]'), 'r') as myfile:
                 lines=myfile.readlines()
         
@@ -86,7 +86,7 @@ for algo_to_show in algo_to_showlist:
     for i_seed in range(3):
         for k, algo in enumerate((algo_list)):
             #try:  
-            #if name_algo[k] == algo.split('_')[0] and seed[k]==i_seed:
+            if name_algo[k] == algo.split('_')[0] and nb_seed[k]==i_seed:
                 text=f"{algo:15}"
                 for j in range(len(env_list)):
                     text = text +  f" | {score_mat_test[k,j]:2.3f} "
