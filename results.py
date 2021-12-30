@@ -32,6 +32,8 @@ for i_envs in env_list:
     for k, algo in enumerate(algo_list):
         #score[i_envs].append(algo)
         # 
+        
+        print(algo!)
         name_algo.append(algo.split('_')[0])
         seed.append(algo.split('seed')[1])
         try:
@@ -55,25 +57,26 @@ for i_envs in env_list:
             pass
     
 print(score_mat_test)
+print('\n')
 print(score_mat_traindomain)
 #print(f'{algo} \t\t\t {perf_in:2.3f} \t {perf_out}')
 
-print(data)
-for k, algo in enumerate((algo_list)):
-    text=f"{algo:15}"
-    for j in range(len(env_list)):
-        text = text +  f" & {score_mat_traindomain[k,j]:2.3f} "
-    text += f" || {score_mat_traindomain[k,:].mean():2.3f} "
-    print(text)
+# print(data)
+# for k, algo in enumerate((algo_list)):
+#     text=f"{algo:15}"
+#     for j in range(len(env_list)):
+#         text = text +  f" & {score_mat_traindomain[k,j]:2.3f} "
+#     text += f" || {score_mat_traindomain[k,:].mean():2.3f} "
+#     print(text)
     
 
-for k, algo in enumerate((algo_list)):
-    text=f"{algo:15}"
+# for k, algo in enumerate((algo_list)):
+#     text=f"{algo:15}"
 
-    for j in range(len(env_list)):
-        text = text +  f" | {score_mat_test[k,j]:2.3f} "
-    text += f" || {score_mat_test[k,:].mean():2.3f} "
-    print(text)
+#     for j in range(len(env_list)):
+#         text = text +  f" | {score_mat_test[k,j]:2.3f} "
+#     text += f" || {score_mat_test[k,:].mean():2.3f} "
+#     print(text)
 
 algo_to_showlist = ['CORAL','ClassCORAL']
 for algo_to_show in algo_to_showlist:
