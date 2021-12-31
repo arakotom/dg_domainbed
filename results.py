@@ -82,7 +82,7 @@ for i_envs in env_list:
 #     text += f" || {score_mat_test[k,:].mean():2.3f} "
 #     print(text)
 
-algo_to_showlist = ['CORAL','ClassCORAL']
+algo_to_showlist = ['CORAL','ClassMMD']
 for algo_to_show in algo_to_showlist:
     for i_seed in range(4):
         for k, algo in enumerate((algo_list)):
