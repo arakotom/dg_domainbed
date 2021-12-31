@@ -1099,7 +1099,8 @@ class AbstractClassMMD(ERM):
             penalty_diff /= nb_diff
 
         self.optimizer.zero_grad()
-        (objective + (self.hparams['mmd_gamma']*(penalty+penalty_diff))).backward()
+        #tested 0.005 
+        (objective + (self.hparams['mmd_gamma']*(0*penalty+penalty_diff))).backward()
         
         self.optimizer.step()
 
