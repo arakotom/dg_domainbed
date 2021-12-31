@@ -17,7 +17,7 @@ for opt, arg in opts:
         setting = int(arg)
 
 if setting == 1:
-    algo_list = ['ClassCORAL','ClassMMD','CORAL']
+    algo_list = ['ClassCORAL']
 elif setting == 2:
     algo_list = ['Transfer']
 
@@ -32,7 +32,7 @@ if data == 'PACS':
     steps_tran = 80000
     
 step_list = [1000]
-seed_list = [0,1,2,3]
+seed_list = [0]
 
 for step in step_list:
     for seed in seed_list:
@@ -40,7 +40,7 @@ for step in step_list:
             if algo in ['ERM', 'Transfer'] :
                 mmd_gamma_list = [0]
             elif algo in ['ClassCORAL']:
-                mmd_gamma_list = [0.1, 0.5,1,2]
+                mmd_gamma_list = [0.01, 0.05,0.1,0.2]
             elif algo in ['ClassMMD']:
                 mmd_gamma_list = [0.01, 0.05,0.1,0.2]
             if setting == 1:
