@@ -41,6 +41,8 @@ for step in step_list:
                 mmd_gamma_list = [0]
             elif algo in ['ClassCORAL']:
                 mmd_gamma_list = [0.01, 0.05,0.1,0.2]
+                mmd_gamma_list = [0.3, 0.4]
+
             elif algo in ['ClassMMD']:
                 mmd_gamma_list = [0.001,0.005]
             if setting == 1:
