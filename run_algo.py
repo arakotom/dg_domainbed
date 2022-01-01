@@ -17,7 +17,7 @@ for opt, arg in opts:
         setting = int(arg)
 
 if setting == 1:
-    algo_list = ['ClassCORAL']
+    algo_list = ['CORAL']
 elif setting == 2:
     algo_list = ['Transfer']
 
@@ -45,6 +45,8 @@ for step in step_list:
 
             elif algo in ['ClassMMD']:
                 mmd_gamma_list = [0.001,0.005]
+            elif algo in ['CORAL']:
+                mmd_gamma_list = [0.05]
             if setting == 1:
 
                 for reg_align in mmd_gamma_list:
