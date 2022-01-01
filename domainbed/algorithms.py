@@ -1085,13 +1085,15 @@ class AbstractClassMMD(ERM):
                         penalty += self.mmd(features[i][ind_i], features[j][ind_j])
                         nb_in +=1
             # maximise distance of class cond for same domain
+            nfeat = features[i].shape[0]
+            penalty_diff +=  self.mmd(features[i][0:nfeat//2], features[j][nfeat//2:nfeat])
             for k in range(self.num_classes):
                 for kp in range(self.num_classes):
                     if k != kp:
                         ind_i=torch.where(targets[i]==k)[0]
                         ind_j=torch.where(targets[i]==kp)[0]
                         if len(ind_i)>1 and len(ind_j) > 1:
-                            penalty_diff -= self.mmd(features[i][ind_i], features[i][ind_j])
+                            penalty_diff -= 0.01*self.mmd(features[i][ind_i], features[i][ind_j])
                             nb_diff +=1
         objective /= nmb
         if nmb > 1:
@@ -1100,7 +1102,7 @@ class AbstractClassMMD(ERM):
 
         self.optimizer.zero_grad()
         #tested 0.005 
-        (objective + (self.hparams['mmd_gamma']*(penalty+0.005*penalty_diff))).backward()
+        (objective + self.hparams['reg_align']*penalty+self.hparams['reg_wda']*penalty_diff).backward()
         
         self.optimizer.step()
 

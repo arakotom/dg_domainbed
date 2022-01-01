@@ -56,7 +56,9 @@ if __name__ == "__main__":
     parser.add_argument('--train_delta', type=float, default=0.5)
     parser.add_argument('--lr_d', type=float, default=1e-3, help='step size for the maximization optimizer')
     parser.add_argument('--lr', type=float, default=5e-5, help='step size for the minimization optimizer')
-    parser.add_argument('--mmd_gamma', type=float, default=1., help='regularizer for MMD')
+    parser.add_argument('--reg_align', type=float, default=1., help='regularizer for MMD')
+    parser.add_argument('--reg_wda', type=float, default=1., help='regularizer for ClassMMD')
+
     args = parser.parse_args()
 
 
@@ -94,7 +96,8 @@ if __name__ == "__main__":
         hparams['delta'] = args.train_delta
         hparams['lr_d'] = args.lr_d
     elif args.algorithm in ['ClassCORAL','CORAL','ClassMMD','ClassWD']:
-        hparams['mmd_gamma'] = args.mmd_gamma # penalty 
+        hparams['reg_align'] = args.reg_align # penalty 
+        hparams['reg_wda'] = args.reg_wda # penalty 
         hparams['batch_size'] = 32
 
 
