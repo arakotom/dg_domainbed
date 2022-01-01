@@ -82,6 +82,20 @@ for i_envs in env_list:
 #     text += f" || {score_mat_test[k,:].mean():2.3f} "
 #     print(text)
 
+
+
+algo_to_showlist = ['CORAL','ClassMMD','ClassCORAL']
+for algo_to_show in algo_to_showlist:
+    for i_seed in range(4):
+        for k, algo in enumerate((algo_list)):
+            #try:  
+            if name_algo[k] == algo_to_show and nb_seed[k]==i_seed:
+                text=f"{algo:15}"
+                for j in range(len(env_list)):
+                    text = text +  f" | {score_mat_traindomain[k,j]:2.3f} "
+                text += f" || {score_mat_traindomain[k,:].mean():2.3f} "
+                print(text)
+
 algo_to_showlist = ['CORAL','ClassMMD','ClassCORAL']
 for algo_to_show in algo_to_showlist:
     for i_seed in range(4):
