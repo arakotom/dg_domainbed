@@ -46,7 +46,7 @@ for step in step_list:
             elif algo in ['ClassMMD']:
                 mmd_gamma_list = [0.001,0.005]
             elif algo in ['CORAL','MMD']:
-                mmd_gamma_list = [0.05]
+                mmd_gamma_list = [0.01,0.05]
             if setting == 1:
 
                 for reg_align in mmd_gamma_list:
