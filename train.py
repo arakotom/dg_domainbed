@@ -111,7 +111,8 @@ if __name__ == "__main__":
         output_dir = os.path.join(args.output_dir, args.dataset, args.algorithm + '_' + str(args.d_steps_per_g) + '_' + str(args.train_delta))
     elif args.algorithm in ['CORAL','ClassCORAL','ClassMMD','ClassWD','ClassCORALCE','ClassMMDCE','ClassWDCE']:
         output_dir = os.path.join(args.output_dir, args.dataset, args.algorithm 
-                                  + '_reg' + str(hparams['mmd_gamma'])
+                                  + '_reg' + str(hparams['reg_align'])
+                                  + '_regwda' + str(hparams['reg_wda'])
                                   + '_batch' + str(hparams['batch_size'])
                                   +  '_resnet' + str(hparams['resnet18'])
                                   +  '_step' + str(args.steps)
