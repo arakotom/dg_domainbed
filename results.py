@@ -95,7 +95,7 @@ for algo_to_show in algo_to_showlist:
                     text = text +  f" | {score_mat_traindomain[k,j]:2.3f} "
                 text += f" || {score_mat_traindomain[k,:].mean():2.3f} "
                 print(text)
-
+print('------------------------------------------')
 algo_to_showlist = ['CORAL','ClassMMD','ClassCORAL']
 for algo_to_show in algo_to_showlist:
     for i_seed in range(4):
