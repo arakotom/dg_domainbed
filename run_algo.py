@@ -31,7 +31,7 @@ if data == 'PACS':
     d_steps = 30
     steps_tran = 80000
     
-step_list = [1100]
+step_list = [500]
 seed_list = [0]
 
 for step in step_list:
