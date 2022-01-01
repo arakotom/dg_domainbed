@@ -57,7 +57,7 @@ if __name__ == "__main__":
     parser.add_argument('--lr_d', type=float, default=1e-3, help='step size for the maximization optimizer')
     parser.add_argument('--lr', type=float, default=5e-5, help='step size for the minimization optimizer')
     parser.add_argument('--reg_align', type=float, default=1., help='regularizer for MMD')
-    parser.add_argument('--reg_wda', type=float, default=1., help='regularizer for ClassMMD')
+    parser.add_argument('--reg_wda', type=float, default=0.1, help='regularizer for ClassMMD')
 
     args = parser.parse_args()
 
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     elif args.algorithm in ['ClassCORAL','CORAL','ClassMMD','ClassWD']:
         hparams['reg_align'] = args.reg_align # penalty 
         hparams['reg_wda'] = args.reg_wda # penalty 
-        hparams['batch_size'] = 64
+        hparams['batch_size'] = 32
 
     if args.dataset == 'RotatedMNIST' and args.algorithm == 'Transfer':
         hparams['lr'] = 0.01
