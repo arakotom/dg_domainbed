@@ -31,7 +31,7 @@ if data == 'PACS':
     d_steps = 30
     steps_tran = 80000
     
-step_list = [2000]
+step_list = [1000]
 seed_list = [0]
 
 for step in step_list:
@@ -47,7 +47,7 @@ for step in step_list:
                 mmd_gamma_list = [0.001,0.005]
                 reg_wda_list = [0.1]
             elif algo in  ['ClassWD']:
-                mmd_gamma_list = [0.001]
+                mmd_gamma_list = [0.0001]
                 reg_wda_list = [0.000]
             elif algo in ['CORAL','MMD']:
                 mmd_gamma_list = [0.01,0.05]
@@ -58,7 +58,7 @@ for step in step_list:
                     for reg_align in mmd_gamma_list:
                         for envs in env_list:
                             command = f"python train.py --algorithm {algo} --dataset {data:} --lr {lr:2.5f}"
-                            command += f" --test_envs {envs:d} --reg_align  {reg_align:2.3f} --step {step:d}"
+                            command += f" --test_envs {envs:d} --reg_align  {reg_align:2.4f} --step {step:d}"
                             command += f" --reg_wda {reg_wda:2.3f}"
                             command += f" --seed {seed:d} --trial_seed 0"
                             print(command)
