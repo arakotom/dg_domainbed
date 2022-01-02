@@ -1054,7 +1054,7 @@ class AbstractClassMMD(ERM):
             with torch.no_grad():
                 maxi = torch.max(M)
                 Mp = torch.div(M,maxi)
-                G, _  = ot.emd(a,b,Mp)
+                G = ot.emd(a,b,Mp)
 
             return torch.sum(G*M)
 
