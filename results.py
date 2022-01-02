@@ -96,7 +96,7 @@ for algo_to_show in algo_to_showlist:
                 text += f" || {score_mat_traindomain[k,:].mean():2.3f} "
                 print(text)
 print('------------------------------------------')
-algo_to_showlist = ['CORAL','ClassMMD','ClassCORAL']
+algo_to_showlist = ['CORAL','ClassMMD','ClassCORAL','ClassWD']
 for algo_to_show in algo_to_showlist:
     for i_seed in range(4):
         for k, algo in enumerate((algo_list)):
