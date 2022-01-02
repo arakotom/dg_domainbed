@@ -31,7 +31,7 @@ if data == 'PACS':
     d_steps = 30
     steps_tran = 80000
     
-step_list = [500,1000]
+step_list = [2000]
 seed_list = [0]
 
 for step in step_list:
@@ -47,7 +47,7 @@ for step in step_list:
                 mmd_gamma_list = [0.001,0.005]
                 reg_wda_list = [0.1]
             elif algo in  ['ClassWD']:
-                mmd_gamma_list = [0.005,0.01]
+                mmd_gamma_list = [0.001]
                 reg_wda_list = [0.000]
             elif algo in ['CORAL','MMD']:
                 mmd_gamma_list = [0.01,0.05]
