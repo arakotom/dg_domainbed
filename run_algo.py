@@ -32,7 +32,7 @@ if data == 'PACS':
     steps_tran = 80000
     
 step_list = [1000]
-seed_list = [0]
+seed_list = [1,2]
 
 for step in step_list:
     for seed in seed_list:
@@ -42,7 +42,7 @@ for step in step_list:
             elif algo in ['ClassCORAL']:
                 mmd_gamma_list = [0.01, 0.05,0.1,0.2]
                 mmd_gamma_list = [0.2,0.3]
-                reg_wda_list = [0.1]
+                reg_wda_list = [0.01,0.1]
 
             elif algo in ['ClassMMD']:
                 mmd_gamma_list = [0.001,0.005]
