@@ -52,7 +52,7 @@ for step in step_list:
                 reg_wda_list = [0.005]
             elif algo in ['CORAL','MMD']:
                 mmd_gamma_list = [0.01,0.05]
-                reg_wda_list = [1]
+                reg_wda_list = [0.1]
             if setting == 1:
                 
                 for reg_wda in reg_wda_list:
