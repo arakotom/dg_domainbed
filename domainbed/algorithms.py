@@ -1093,13 +1093,14 @@ class AbstractClassMMD(ERM):
                         ind_i=torch.where(targets[i]==k)[0]
                         ind_j=torch.where(targets[i]==kp)[0]
                         if len(ind_i)>1 and len(ind_j) > 1:
-                            penalty_diff -= self.mmd(features[i][ind_i], features[i][ind_j])
+                            penalty_diff += self.mmd(features[i][ind_i], features[i][ind_j])
                             nb_diff +=1
         objective /= nmb
         if nmb > 1:
             penalty /= nb_in
             penalty_diff /= nb_diff
-
+            penalty /= penalty_diff 
+            penalty_diff = 0
         self.optimizer.zero_grad()
         #tested 0.005 
         (objective + self.hparams['reg_align']*penalty+self.hparams['reg_wda']*penalty_diff).backward()

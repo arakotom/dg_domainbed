@@ -49,7 +49,7 @@ for step in step_list:
                 reg_wda_list = [0.1]
             elif algo in  ['ClassWD']:
                 mmd_gamma_list = [0.0005]
-                reg_wda_list = [0.005]
+                reg_wda_list = [0.00]
             elif algo in ['CORAL','MMD']:
                 mmd_gamma_list = [0.01,0.05]
                 reg_wda_list = [0.1]
