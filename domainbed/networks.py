@@ -57,6 +57,7 @@ class ResNet(torch.nn.Module):
             self.network = torchvision.models.resnet18(pretrained=True)
             self.n_outputs = 512
         else:
+            print('loading RESNET50')
             self.network = torchvision.models.resnet50(pretrained=True)
             self.n_outputs = 2048
 
