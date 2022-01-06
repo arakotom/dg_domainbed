@@ -28,7 +28,7 @@ import pickle
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Domain generalization')
     parser.add_argument('--data_dir', type=str, default='./domainbed/datasets/')
-    parser.add_argument('--dataset', type=str, default="RotatedMNIST")
+    parser.add_argument('--dataset', type=str, default="PACS")
     parser.add_argument('--algorithm', type=str, default="ClassMMD")
     parser.add_argument('--task', type=str, default="domain_generalization",
         help='domain_generalization | domain_adaptation')
@@ -99,7 +99,7 @@ if __name__ == "__main__":
         hparams['reg_align'] = args.reg_align # penalty 
         hparams['reg_wda'] = args.reg_wda # penalty 
         hparams['batch_size'] = 128
-        hparams['resnet18'] = False
+        hparams['resnet18'] = True
 
     if args.dataset == 'RotatedMNIST' and args.algorithm == 'Transfer':
         hparams['lr'] = 0.01
