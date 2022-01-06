@@ -98,7 +98,7 @@ if __name__ == "__main__":
     elif args.algorithm in ['ClassCORAL','CORAL','ClassMMD','ClassWD']:
         hparams['reg_align'] = args.reg_align # penalty 
         hparams['reg_wda'] = args.reg_wda # penalty 
-        hparams['batch_size'] = 32
+        hparams['batch_size'] = 128
         hparams['resnet18'] = False
 
     if args.dataset == 'RotatedMNIST' and args.algorithm == 'Transfer':
