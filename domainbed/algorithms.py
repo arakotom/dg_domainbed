@@ -1086,7 +1086,7 @@ class AbstractClassMMD(ERM):
                         nb_in +=1
             # maximise distance of class cond for same domain
             nfeat = features[i].shape[0]
-            penalty_diff +=  self.mmd(features[i][0:nfeat//2], features[j][nfeat//2:nfeat])
+            #penalty_diff +=  self.mmd(features[i][0:nfeat//2], features[j][nfeat//2:nfeat])
             for k in range(self.num_classes):
                 for kp in range(self.num_classes):
                     if k != kp:
@@ -1103,12 +1103,12 @@ class AbstractClassMMD(ERM):
             penalty_diff = 0
         self.optimizer.zero_grad()
         #tested 0.005 
-        (objective + self.hparams['reg_align']*penalty+self.hparams['reg_wda']*penalty_diff).backward()
+        (objective + self.hparams['reg_align']*penalty).backward()
         
         self.optimizer.step()
 
         if torch.is_tensor(penalty):
-            penalty = (penalty+penalty_diff).item()
+            penalty = (penalty).item()
 
         return {'loss': objective.item(), 'penalty': penalty}
 
