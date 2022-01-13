@@ -100,7 +100,7 @@ seed_list = [0]
 algo_to_showlist = ['CORAL']
 for seed in seed_list:
     for algo_to_show in algo_to_showlist:
-    #try:
+        try:
             ind_seed = np.argwhere(np.logical_and(nb_seed==seed,name_algo == algo_to_show))
             # find max performance
             best_model = np.argmax(score_mat_traindomain[ind_seed],axis=0)[0]
@@ -112,5 +112,5 @@ for seed in seed_list:
                 text = text +  f" | {best_val:2.3f} "
             text += f" || {mean_val/4:2.3f} "
             print(text)
-    #except:
-    #    pass
+        except:
+            pass
