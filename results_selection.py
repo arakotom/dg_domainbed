@@ -98,9 +98,9 @@ for algo_to_show in algo_to_showlist:
 #%% 
 seed_list = [0]
 algo_to_showlist = ['CORAL']
-for algo_to_show in algo_to_showlist:
+for seed in seed_list:
+    for algo_to_show in algo_to_showlist:
     #try:
-        for seed in seed_list:
             ind_seed = np.argwhere(np.logical_and(nb_seed==seed,name_algo == algo_to_show))
             # find max performance
             best_model = np.argmax(score_mat_traindomain[ind_seed],axis=0)[0]
