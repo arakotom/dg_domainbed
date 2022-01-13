@@ -97,7 +97,7 @@ for algo_to_show in algo_to_showlist:
                 print(text)
 #%% 
 seed_list = [0]
-algo_to_showlist = ['CORAL','ClassWD']
+algo_to_showlist = ['CORAL','ClassWD','ClassCORAL']
 for seed in seed_list:
     for algo_to_show in algo_to_showlist:
         ind_seed = np.argwhere(np.logical_and(nb_seed==seed,name_algo == algo_to_show))
