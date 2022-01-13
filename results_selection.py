@@ -20,7 +20,7 @@ elif data == 'PACS':
     env_list = [0,1,2,3]
 
 output_dir = './results/'
-algo_list = os.listdir(os.path.join(output_dir,data,'old/'))
+algo_list = os.listdir(os.path.join(output_dir,data,'/old/'))
 
 score = ['']*len(env_list)
 score_mat_test = np.zeros((len(algo_list),len(env_list)))
