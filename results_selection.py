@@ -97,7 +97,7 @@ for algo_to_show in algo_to_showlist:
                 print(text)
 #%% 
 seed_list = [0,1,2,3]
-algo_to_showlist = ['CORAL','ClassMMD','ClassCORAL','ClassWD']
+algo_to_showlist = ['CORAL']
 for algo_to_show in algo_to_showlist:
     try:
         for seed in seed_list:
