@@ -19,7 +19,7 @@ if data == 'RotatedMNIST':
 elif data == 'PACS':
     env_list = [0,1,2,3]
 
-output_dir = './results/'
+output_dir = './results/old/'
 algo_list = os.listdir(os.path.join(output_dir,data))
 
 score = ['']*len(env_list)
