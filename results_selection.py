@@ -74,13 +74,13 @@ for i_envs in env_list:
 #     print(text)
     
 
-# for k, algo in enumerate((algo_list)):
-#     text=f"{algo:15}"
+for k, algo in enumerate((algo_list)):
+    text=f"{algo:15}"
 
-#     for j in range(len(env_list)):
-#         text = text +  f" | {score_mat_test[k,j]:2.3f} "
-#     text += f" || {score_mat_test[k,:].mean():2.3f} "
-#     print(text)
+    for j in range(len(env_list)):
+        text = text +  f" | {score_mat_test[k,j]:2.3f} "
+    text += f" || {score_mat_test[k,:].mean():2.3f} "
+    print(text)
 
 
 
